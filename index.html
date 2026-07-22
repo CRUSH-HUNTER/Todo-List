@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+       <title>ToDoList</title>
+       <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+   
+        <header>
+
+             <h1>Task Manager</h1>
+
+             <p>Organize your workflow efficiently</p>
+
+        </header>
+
+        <div class="state">
+            <div id="stat1" class="statein">
+                <h3>Total</h3>
+
+            </div>
+
+            <div id="stat2" class="statein">
+                <h3>Pending</h3>
+            </div>
+
+            <div id="stat3" class="statein">
+                <h3>In Progress</h3>
+            </div>
+
+            <div id="stat4" class="statein">
+                <h3>completed</h3>
+            </div>
+            
+        </div>
+        <div class="actions">
+
+              <button id="openBtn">
+
+                    + Create Task
+
+             </button>
+
+             <button id="ClearAll">
+
+                    Clear All
+
+             </button>
+
+</div>
+<!-------------------------------------------------------------------------------------------->
+
+<div id="modal" class="modal-body">
+
+    <div class="popup">    
+
+        <div class="modal-header">
+            <h2>New Task</h2>
+            <button id="closeBtn" class="close-btn">×</button>
+        </div>
+
+        <div class="form-group">
+            <label for="tex">Title</label>
+            <input type="text" id="tex" placeholder="What needs to be done?"/>
+
+            <label for="desc">Description</label>
+            <textarea id="desc" placeholder="Add details..."></textarea>
+        </div>
+
+    <div class="row">
+       <div class="form-group half">
+          <label for="selec1">Priority</label>
+          <select  id="selec1">
+             <option value="Easy">Easy</option>
+             <option value="Medium">Medium</option>
+             <option value="Difficult">Difficult</option>
+          </select>
+        </div>
+
+        <div class="form-group half">
+           <label for="selec2">Status</label>
+               <select id="selec2">
+                  <option value="Pending">Pending</option>
+                  <option value="Inprogress">Inprogress</option>
+                  <option value="Completed">Completed</option>
+              </select>
+        </div>
+    </div>
+  
+        <div class="footer">
+            <button id="send" class="send">Create</button>
+            <button id="can" class="canc">Cancel</button>
+        </div>
+
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+<!--
+        <div class="button">
+           <button onclick="change()" id="btn">+ Create Task </button>
+           <p id="text">JavaScript is everywhere.</p><br/><br/>
+        </div>
+-->
+
+        <!--Consol-->
+        <!--
+        <script>
+            const price1 = 5;
+            const price2 = 6;
+            let total = price1 + price2;
+            console.log(total);
+            total = total + 10;
+            console.log(total);
+        </script>
+
+        <script>
+            try {
+               console.log(test);
+            }
+           catch (error) {
+               console.log("I'm Hacker");
+           }
+        </script>
+        -->
