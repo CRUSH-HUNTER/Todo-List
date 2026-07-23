@@ -2,9 +2,30 @@ console.log("signup.js loaded");
 /////////////////Get Information of Users/////////////////
 let users = JSON.parse(localStorage.getItem("users")) || [];
 
+async function hashPassword(password) {
+
+    const encoder = new TextEncoder();
+
+    const data = encoder.encode(password);
+
+    const hashBuffer = await crypto.subtle.digest(
+        "SHA-256",
+        data
+    );
+
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+    const hashHex = hashArray
+        .map(byte => byte.toString(16).padStart(2, "0"))
+        .join("");
+
+    return hashHex;
+
+}
+
 //////////////////////Signup Button///////////////////
 const signupBtn = document.getElementById("signupBtn");
-signupBtn.addEventListener("click" , function () {
+signupBtn.addEventListener("click" ,async function () {
 
        console.log("Signup Clicked");
     let username = document.getElementById("username").value;
@@ -60,18 +81,22 @@ signupBtn.addEventListener("click" , function () {
     }
 
     ////Define an Object////
+    const hashedPassword = await hashPassword(password);
     const newUser = {
 
         username: username,
         email: email,
-        password: password
+        password: hashedPassword
     
     }
-    users.push(newUser);
+users.push(newUser);
 
-    console.log(users);
-    //////////////////Save an Information/////////////
-    localStorage.setItem("users", JSON.stringify(users));
+console.log("Before Save:", users);
 
+localStorage.setItem("users", JSON.stringify(users));
+
+console.log("After Save:", localStorage.getItem("users"));
+    
+window.location.href = "../pages/login.html";
 
 })

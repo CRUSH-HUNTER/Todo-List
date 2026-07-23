@@ -1,5 +1,24 @@
- 
-    function render() {
+const currentUser =
+    localStorage.getItem("currentUser") ||
+    sessionStorage.getItem("currentUser");
+
+if (!currentUser) {
+    window.location.href = "../pages/login.html";
+}
+
+const welcome = document.getElementById("welcome");
+welcome.textContent = `Welcome, ${currentUser} 👋`;
+
+const logoutBtn = document.getElementById("logoutBtn");
+logoutBtn.addEventListener("click", function () {
+
+    localStorage.removeItem("currentUser");
+    sessionStorage.removeItem("currentUser");
+
+    window.location.href = "../pages/login.html";
+});
+
+function render() {
 
         stat1.innerHTML = "<h3>Total</h3>";
         stat2.innerHTML = "<h3>Pending</h3>";
@@ -9,6 +28,13 @@
 
         tasks.forEach(function (task) {
             
+            /////////Check CurrentUser////////
+            if (task.username !== currentUser) {
+                
+                return;
+
+            }
+
             //////////for Box//////////////
             
             div = document.createElement('div');
@@ -150,11 +176,15 @@ send.onclick = function () {
 
     /////////object//////////
     const task = {
-        title: text,
-        description: desc,
-        priority: Priority,
-        status: Status
+
+    username: currentUser,
+    title: text,
+    description: desc,
+    priority: Priority,
+    status: Status
+
     };
+
 
     tasks.push(task);
     localStorage.setItem("tasks", JSON.stringify(tasks));
