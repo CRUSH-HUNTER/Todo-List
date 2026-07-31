@@ -37,17 +37,17 @@ function render() {
 
             //////////for Box//////////////
             
-            div = document.createElement('div');
+            let div = document.createElement('div');
             div.classList.add("task-card");
 
-            h4 = document.createElement('h4');
-            p = document.createElement('p');
+            let h4 = document.createElement('h4');
+            let p = document.createElement('p');
 
-            span = document.createElement('span');
-            actions = document.createElement("div");
+            let span = document.createElement('span');
+            let actions = document.createElement("div");
 
-            editBtn = document.createElement("button");
-            deleteBtn = document.createElement("button");
+            let editBtn = document.createElement("button");
+            let deleteBtn = document.createElement("button");
 
             editBtn.textContent = "✏ Edit";
             deleteBtn.textContent = "🗑 Delete";     
@@ -64,6 +64,38 @@ function render() {
             div.appendChild(h4);
             div.appendChild(p);
             div.appendChild(span);
+
+           deleteBtn.onclick = function () {
+
+                tasks = tasks.filter(function(item){
+
+                return item.id != task.id;
+
+             });
+
+             localStorage.setItem("tasks", JSON.stringify(tasks));
+               
+             render();
+           
+           }
+
+            editBtn.onclick = function () {
+
+                send.textContent = "Update";
+
+                editTaskId = task.id;
+             
+                modal.style.display = "flex";
+
+                document.getElementById("tex").value = task.title;
+
+                document.getElementById("desc").value = task.description;
+
+                document.getElementById("selec1").value = task.priority;
+
+                document.getElementById("selec2").value = task.status;
+
+            }
             
             ///////Check Status////////
             if (task.status === "Pending") {
@@ -160,8 +192,9 @@ ClearAll.onclick = function () {
 }
 
 let users = [];
-
+let editTaskId = null;
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];   ///or///   //let tasks = [];
+
 render();
 
 send.onclick = function () {
@@ -174,100 +207,44 @@ send.onclick = function () {
     let Priority = document.querySelector("#selec1").value;
     let Status = document.querySelector("#selec2").value;
 
-    /////////object//////////
-    const task = {
+    if(editTaskId === null){
 
-    username: currentUser,
-    title: text,
-    description: desc,
-    priority: Priority,
-    status: Status
-
-    };
+        const task = {
+    
+             id: Date.now(),
+             username: currentUser,
+             title: text,
+             description: desc,
+             priority: Priority,
+             status: Status
+        };
 
 
     tasks.push(task);
+
+    }
+    else {
+        
+        const item = tasks.find(function(task){
+
+             return task.id == editTaskId;
+        
+        });
+
+
+      if(item){
+
+          item.title = text;
+          item.description = desc;
+          item.priority = Priority;
+          item.status = Status;
+       }
+
+    }
+    /////////object//////////
+ 
+    editTaskId = null;
     localStorage.setItem("tasks", JSON.stringify(tasks));
     render();
-    console.log(task);
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*
-    console.log(task.title);
-    console.log(task.description);
-    console.log(task.priority);
-    console.log(task.status);
-*/
-    
-/*
-        //////////for Box//////////////
-        div = document.createElement('div');
-        h4 = document.createElement('h4');
-        p = document.createElement('p');
-        span = document.createElement('span');
-
-        //////////Total///////////
-        ul = document.createElement('ul');
-        li = document.createElement('li');
-
-        h4.textContent = text;
-        p.textContent = desc;
-        span.textContent = Priority;
-        ///////Total/////////
-        ul.textContent = text;
-        li.textContent = Priority;
- 
-        ///////for Box////////
-        div.appendChild(h4);
-        div.appendChild(p);
-        div.appendChild(span);
-    
-        /////Check Priority for SPAN//////
-        switch (Priority) {
-            case "Easy":
-                span.style.color = "lightgreen";
-                break;
-            case "Medium":
-                span.style.color = "orange";
-                break;
-            case "Difficult":
-                span.style.color = "red";
-                break;
-        }
-      switch (Priority) {
-            case "Easy":
-                li.style.color = "lightgreen";
-                break;
-            case "Medium":
-                li.style.color = "orange";
-                break;
-            case "Difficult":
-                li.style.color = "red";
-                break;
-        }
-        /////Check Priority for LI//////
-  
-
-        ///////Check Status////////
-        if (Status === "Pending") {
-    
-            stat2.appendChild(div);
-
-        }
-
-        else if (Status === "Inprogress") {
-
-            stat3.appendChild(div);
-
-        }
-        else {
-
-            stat4.appendChild(div);
-
-        }
-        //////////Total//////////
-        stat1.appendChild(ul);
-        stat1.appendChild(li);
-        */
 }

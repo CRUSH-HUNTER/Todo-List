@@ -100,3 +100,6 @@ console.log("After Save:", localStorage.getItem("users"));
 window.location.href = "../pages/login.html";
 
 })
+setupPasswordToggle("password", "togglePassword");
+
+setupPasswordToggle("confirmPassword", "toggleConfirmPassword");

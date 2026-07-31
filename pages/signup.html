@@ -9,6 +9,10 @@
 
 <title>Sign Up</title>
 
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 <link rel="stylesheet" href="../css/signup.css">
 
 </head>
@@ -32,13 +36,50 @@
             <input type="email" id="email">
 
             <label>Password</label>
-            <input type="password" id="password">
+
+            <div class="password-box">
+
+            <input
+                type="password"
+                id="password">
+
+               <button
+                   type="button"
+                   id="togglePassword"
+                   class="eye-btn">
+
+               <i class="fa-solid fa-eye"></i>
+
+              </button>
+
+            </div>
 
             <label>Confirm Password</label>
-            <input type="password" id="confirmPassword">
 
-            <button type="button" id="signupBtn">
+            <div class="password-box">
+
+                <input
+                    type="password"
+                    id="confirmPassword">
+
+                   <button
+                        type="button"
+                        id="toggleConfirmPassword"
+                        class="eye-btn">
+
+                    <i class="fa-solid fa-eye"></i>
+
+                  </button>
+
+            </div>
+
+            <button 
+                type="button" 
+                id="signupBtn" 
+                class="signup-btn">
+
                 Create Account
+                
             </button>
 
         </form>
@@ -55,6 +96,7 @@
 
 </div>
 
+<script src="../js/auth.js"></script>
 <script src="../js/signup.js"></script>
 
 </body>

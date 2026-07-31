@@ -1,0 +1,46 @@
+.task-actions{
+
+    display:flex;
+
+    gap:8px;
+
+    margin-top:15px;
+
+}
+
+.edit-btn,
+.delete-btn{
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.edit-btn{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+.delete-btn{
+
+    background:#ef4444;
+
+    color:white;
+
+}

@@ -74,3 +74,7 @@ loginBtn.addEventListener("click",async function () {
     window.location.href = "../pages/index.html";
 
 })
+
+setupPasswordToggle("password", "togglePassword");
+
+setupPasswordToggle("confirmPassword", "toggleConfirmPassword");

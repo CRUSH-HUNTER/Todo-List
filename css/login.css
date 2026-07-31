@@ -180,12 +180,6 @@ body{
 
 }
 
-.eye-btn:hover{
-
-   background:#eef2ff; 
-
-}
-
 .password-box:focus-within{
 
     border-color:#4f46e5;
