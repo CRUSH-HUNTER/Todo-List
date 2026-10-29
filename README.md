@@ -58,6 +58,14 @@ This project is fully client-side, so no server or installation is required:
 > 💡 Tip: for a smoother experience, you can open the project with a local server (e.g. the Live Server extension).
 
 ---
+## ⚠️ Known Issues (Security Focus)
+
+- Client-side authentication can be bypassed by modifying localStorage.
+- Passwords are stored in plaintext.
+- Potential XSS via unsanitized inputs.
+- Cross-page state management has bugs when opened via file:// protocol.
+
+*Note: This project is a learning lab. These issues are documented to show the difference between a prototype and a secure app.*
 
 ## ⚠️ Note
 
