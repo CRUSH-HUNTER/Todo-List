@@ -58,14 +58,16 @@ This project is fully client-side, so no server or installation is required:
 > 💡 Tip: for a smoother experience, you can open the project with a local server (e.g. the Live Server extension).
 
 ---
-## ⚠️ Known Issues (Security Focus)
+## ⚠️ Development Notes & Limitations
 
-- Client-side authentication can be bypassed by modifying localStorage.
-- Passwords are stored in plaintext.
-- Potential XSS via unsanitized inputs.
-- Cross-page state management has bugs when opened via file:// protocol.
+This project was built as a practice for Vanilla JavaScript and client-side logic.
 
-*Note: This project is a learning lab. These issues are documented to show the difference between a prototype and a secure app.*
+**Current Limitations (Observed):**
+- The application relies entirely on client-side storage (`localStorage`) for authentication and task management.
+- **Auth Flow Bug:** The signup button does not properly initialize the user state, leading to a "User not found" error upon login. This is due to restrictions when running via the `file://` protocol and logic errors in the event listeners.
+- **Inherent Security Flaw:** Because authentication is handled on the client side, a user can easily bypass the login by manipulating the browser's local storage. This demonstrates why server-side authentication is mandatory for real applications.
+
+*Note: This app is a learning prototype and is not production-ready.*
 
 ## ⚠️ Note
 
